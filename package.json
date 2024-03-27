@@ -1,0 +1,28 @@
+{
+  "name": "000",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "esbuild src/index.ts --bundle --platform=node --outfile=dist/cli.js --external:child_process --external:keytar"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@linear/sdk": "^19.3.0",
+    "child_process": "^1.0.2",
+    "esbuild": "^0.20.2",
+    "inquirer": "^9.2.16",
+    "keytar": "^7.9.0"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^20.11.30",
+    "typescript": "^5.4.3"
+  },
+  "bin": {
+    "000": "./dist/cli.js"
+  }
+}
