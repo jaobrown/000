@@ -13,7 +13,14 @@ The 000 CLI tool is a command-line interface application designed to interact wi
 - Access to Linear API and a generated API key.
 
 ## Installation
-To install the CLI tool, clone the repository and run `npm install` to install the dependencies.
+To install the CLI tool, clone the repository and run `npm install` to install the dependencies. After installing the dependencies, build the package and link it globally to your system:
+
+```shell
+npm run build
+npm link
+```
+
+This will make the `000` command available globally on your machine.
 
 ## Usage
 
