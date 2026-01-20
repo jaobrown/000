@@ -108,7 +108,7 @@ async function fetchTeams(apiKey: string): Promise<{ id: string; name: string }[
       id: team.id
     }));
   } catch (error) {
-    console.error('Failed to fetch teams:', error);
+    console.error('Failed to fetch teams', error);
     return [];
   }
 }
