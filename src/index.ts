@@ -137,7 +137,27 @@ async function updateDefaultTeam() {
 }
 
 async function main() {
-  const [, , command, ...args] = process.argv;
+  const [, , firstArg, ...restArgs] = process.argv;
+
+  const knownCommands = ['login', 'update-team'];
+
+  // Determine if firstArg is a command or part of the task title
+  let command: string;
+  let args: string[];
+
+  if (!firstArg) {
+    console.log('Usage: 000 <task title>');
+    console.log('       000 login');
+    console.log('       000 update-team');
+    return;
+  } else if (knownCommands.includes(firstArg)) {
+    command = firstArg;
+    args = restArgs;
+  } else {
+    // Default to creating a task - treat firstArg as part of the title
+    command = 'fix';
+    args = [firstArg, ...restArgs];
+  }
 
   switch (command) {
     case 'login':
@@ -149,18 +169,12 @@ async function main() {
         console.log('No API key found. Please login using `000 login`.');
         return;
       }
-      if (args.length === 0) {
-        console.log('Please provide a brief issue title for the fix command.');
-        return;
-      }
       const issueTitle = args.join(' ');
       await createIssueAndCheckoutBranch(apiKey, issueTitle);
       break;
     case 'update-team':
       await updateDefaultTeam();
       break;
-    default:
-      console.log('Unknown command. Available commands are `login` and `fix`.');
   }
 }
 
